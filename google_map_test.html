@@ -49,6 +49,7 @@
 
         #infowindow-content {
             display: none;
+            white-space: pre-line;
         }
 
         #map #infowindow-content {
@@ -105,13 +106,7 @@
             // Search for Google's office in Australia.
 
             var requestArray = [
-              'Auckland',
-              'Christchurch', 
-              'Katikati', 
-              'Mangonui', 
-              'Naike', 
-              'Orewa' ,
-              'Papakura', 'Porirua', 'Waikawa', 'Rangiora'
+
             ];
 
 
@@ -151,10 +146,7 @@
                         location: place.geometry.location
                     }
                 });
-                infowindowContent.children['place-name'].textContent = place.name;
-                infowindowContent.children['place-id'].textContent = place.place_id;
-                infowindowContent.children['place-address'].textContent =
-                    place.formatted_address;
+
 
                 marker.addListener('click', function() {
                     infowindow.open(map, marker);
@@ -169,6 +161,21 @@
                     e: place.geometry.viewport.f.f,
                     w: place.geometry.viewport.f.b
                 };
+
+                infowindowContent.children['place-name'].textContent = place.name;
+                infowindowContent.children['place-id'].textContent = place.place_id;
+                infowindowContent.children['place-address'].textContent =
+                    place.formatted_address + '\r\n'
+                    + 'East :' + viewportArray.n + '\r\n'
+                    + 'West :' + viewportArray.s + '\r\n'
+                    + 'South :' + viewportArray.e + '\r\n'
+                    + 'North :' + viewportArray.w + '\r\n';
+
+                //document.getElementById('viewport-bn')[0].textContent = viewportArray.n;
+                //document.getElementById('viewport-bs')[0].textContent = viewportArray.s;
+                //document.getElementById('viewport-bw')[0].textContent = viewportArray.w;
+                //document.getElementById('viewport-be')[0].textContent = viewportArray.e;
+
                 var coordinates = [{
                         lat: viewportArray.w,
                         lng: viewportArray.s
@@ -217,10 +224,10 @@
                     path: coordinates,
                     geodesic: true,
                     strokeColor: hexColor,
-                    strokeOpacity: 0,
+                    strokeOpacity: 0.2,
                     strokeWeight: 1,
                     fillColor: hexColor,
-                    fillOpacity: 0
+                    fillOpacity: 0.1
                 });
 
                 vpPath.setMap(map);
