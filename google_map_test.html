@@ -166,10 +166,10 @@
                 infowindowContent.children['place-id'].textContent = place.place_id;
                 infowindowContent.children['place-address'].textContent =
                     place.formatted_address + '\r\n'
-                    + 'East :' + viewportArray.n + '\r\n'
-                    + 'West :' + viewportArray.s + '\r\n'
-                    + 'South :' + viewportArray.e + '\r\n'
-                    + 'North :' + viewportArray.w + '\r\n';
+                    + 'be=' + viewportArray.n
+                    + '&bw=' + viewportArray.s
+                    + '&bs=' + viewportArray.e
+                    + '&bn=' + viewportArray.w;
 
                 //document.getElementById('viewport-bn')[0].textContent = viewportArray.n;
                 //document.getElementById('viewport-bs')[0].textContent = viewportArray.s;
